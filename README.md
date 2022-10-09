@@ -14,6 +14,8 @@ Visit the website : [Link](https://harsh-tewari.github.io/Portfolio_Website/)
 
 <h4>Link to live website : https://harsh-tewari.github.io/Portfolio_Website/</h4>
 <br>
+(Shortened URL: https://bit.ly/harsh-tewari)
+<br>
 This is my portfolio website that has been built using only HTML,CSS, and JavaScript. This showcases my skills, acheivement and things that I've done so far.
 <br>
 <p>It was a great experience building the first version of my portfolio website. It was both difficult and adventurous at the same time. On the one hand, It was my first time diving deep into frontend development tools, which caused many doubts and problems, but at the same time, it was a quite fun and pleasing experience solving them on my own.
