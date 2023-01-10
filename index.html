@@ -282,19 +282,19 @@
 
     <!--Connect With Me Section-->
     <section id="contact_me">
-      <form class="cont_cont" onsubmit="sendEmail();reset();return false"" >
+      <form class="cont_cont" id="contact_form">
         <h2 id="cont_me">Connect With Me</h2>
         <div class="row100">
           <div class="contcol">
             <div class="ipbox">
-              <input type="text" name="fistname" id="" required="required" />
+              <input type="text" name="user_name" id="user_name" required="required" />
               <span class="text">First Name</span>
               <span class="line"></span>
             </div>
           </div>
           <div class="contcol">
             <div class="ipbox">
-              <input type="text" name="secondname" id="usersname" required="required" />
+              <input type="text" name="sname" id="sname" required="required" />
               <span class="text">Last Name</span>
               <span class="line"></span>
             </div>
@@ -303,14 +303,14 @@
         <div class="row100">
           <div class="contcol">
             <div class="ipbox">
-              <input type="email" name="email" id="usermail" required="required" />
+              <input type="email" name="user_email" id="user_email" required="required" />
               <span class="text">Email</span>
               <span class="line"></span>
             </div>
           </div>
           <div class="contcol">
             <div class="ipbox">
-              <input type="text" name="userph" id="userph" required="required" />
+              <input type="text" name="contact_number" id="contact_number" required="required" />
               <span class="text">Mobile</span>
               <span class="line"></span>
             </div>
@@ -320,7 +320,7 @@
         <div class="row100">
           <div class="contcol">
             <div class="ipbox textarea">
-              <textarea required="required" id="usermessage"></textarea>
+              <textarea required="required" name="message" id="message"></textarea>
               <span class="text">Please Type Your Text Here...</span>
               <span class="line"></span>
             </div>
@@ -329,7 +329,7 @@
 
         <div class="row100">
           <div class="contcol">
-            <button type="submit" href="mailto:dashingharsh27@gmail.com"value="send" >Send</button>
+            <button type="submit" id="sub_button" value="Send Email"  >Send</button>
           </div>
         </div>
       </form>
@@ -378,24 +378,34 @@
         nomodule
         src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
       ></script>
-      <script src="https://smtpjs.com/v3/smtp.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+      <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init('9JnWe74StwZxmd5Bh');
+        })();
+    </script>
       <script>
-        // const btn=document.querySelector("button");
-        // const inputs=document.querySelector("form");
-        function sendEmail(){
-          Email.send({
-            SecurityToken:"e4a72480-0f64-4bc1-8759-4f128e00e591",
-            To : ['dashingharsh27@gmail.com','1ms20cs050@gmail.com'],
-            From :"1ms20cs050@gmail.com"/* document.getElementById("usermail").value*/,
-            Subject : "Portfolio website Contact Enquiry",
-            Body : "name: "+ document.getElementById("usersname").value
-              +"<br> email: "+ document.getElementById("usermail").value
-              +"<br> phone no.: "+ document.getElementById("userph").value
-              +"<br> message: "+ document.getElementById("usermessage").value
-          }).then(
-            message => alert("Message Sent Successfully")
-          );
-        }
+        const btn = document.getElementById('sub_button');
+
+        document.getElementById('contact_form')
+        .addEventListener('submit', function(event) {
+          event.preventDefault();
+
+          btn.value = 'Sending...';
+
+          const serviceID = 'default_service';
+          const templateID = 'contact_form';
+
+          emailjs.sendForm(serviceID, templateID, this)
+            .then(() => {
+              btn.value = 'Send Email';
+              alert('Your message has been Sent!');
+            }, (err) => {
+              btn.value = 'Send Email';
+              alert('Some Error Occured!');
+            });
+        });
       </script>
     </section>
   </body>
